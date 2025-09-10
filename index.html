@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cake Collections Dashboard</title>
+<style>
+  /* Reset & basics */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f9d5e5, #fcefee);
+    color: #4a3c67;
+  }
+
+  header {
+    background-color: #6d4c7a;
+    color: #fcefee;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .collections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .cake-card {
+    background-color: #fff7fb;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(109, 76, 122, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+
+  .cake-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(109, 76, 122, 0.35);
+  }
+
+  .cake-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .cake-info {
+    padding: 1rem 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cake-info h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.3rem;
+    color: #6d4c7a;
+  }
+
+  .cake-info p {
+    margin: 0 0 1rem;
+    color: #7a637a;
+    font-size: 0.95rem;
+    flex-grow: 1;
+  }
+
+  .cake-info .details {
+    font-weight: 600;
+    color: #985d99;
+    font-size: 0.9rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: #6d4c7a;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Cake Collections Dashboard</h1>
+</header>
+
+<main>
+  <div class="collections" id="cake-collections">
+    <!-- Cake cards injected by JS -->
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Sweet Delights Bakery
+</footer>
+
+<script>
+  // Cake data array
+  const cakes = [
+    {
+      name: "Classic Chocolate Cake",
+      description: "Rich and moist chocolate cake with creamy chocolate frosting.",
+      collection: "Chocolate Lovers",
+      image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Strawberry Shortcake",
+      description: "Light sponge cake layered with fresh strawberries and whipped cream.",
+      collection: "Berry Specials",
+      image: "https://images.unsplash.com/photo-1562440499-c4ae7f0c5b0d?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Lemon Drizzle Cake",
+      description: "Tangy lemon cake with a sweet lemon glaze topping.",
+      collection: "Citrus Delight",
+      image: "https://images.unsplash.com/photo-1542831371-d531d36971e6?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Red Velvet Cake",
+      description: "Classic red velvet with smooth cream cheese frosting.",
+      collection: "Classic Collection",
+      image: "https://images.unsplash.com/photo-1505253210343-262e2871d295?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Carrot Cake",
+      description: "Moist carrot cake with walnuts and cream cheese icing.",
+      collection: "Nutty & Sweet",
+      image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Tiramisu",
+      description: "Coffee-flavored Italian dessert with mascarpone and cocoa.",
+      collection: "International",
+      image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80"
+    }
+  ];
+
+  const container = document.getElementById('cake-collections');
+
+  function createCakeCard(cake) {
+    const card = document.createElement('div');
+    card.className = 'cake-card';
+
+    card.innerHTML = `
+      <img src="${cake.image}" alt="${cake.name}" class="cake-img" />
+      <div class="cake-info">
+        <h2>${cake.name}</h2>
+        <p>${cake.description}</p>
+        <div class="details"><strong>Collection:</strong> ${cake.collection}</div>
+      </div>
+    `;
+
+    return card;
+  }
+
+  function renderCakes() {
+    cakes.forEach(cake => {
+      container.appendChild(createCakeCard(cake));
+    });
+  }
+
+  renderCakes();
+</script>
+
+</body>
+</html>
